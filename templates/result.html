@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Your ETA · SwiftETA{% endblock %}
+{% block bodyclass %}page-result{% endblock %}
+
+{% block content %}
+<section class="result-section">
+  <div class="result-card">
+    <span class="eyebrow"><i class="fa-solid fa-check"></i> PREDICTION READY</span>
+    <h1>Estimated Delivery Time</h1>
+
+    <div class="result-number">
+      <i class="fa-solid fa-stopwatch result-icon"></i>
+      <span class="big-number" data-target="{{ prediction }}">0</span>
+      <span class="unit">min</span>
+    </div>
+
+    {% if hours and hours > 0 %}
+    <p class="result-alt">That's about <strong>{{ hours }}h {{ minutes }}m</strong></p>
+    {% endif %}
+
+    <div class="breakdown-grid">
+      <div class="breakdown-item">
+        <i class="fa-solid fa-road"></i>
+        <span class="b-label">Distance</span>
+        <span class="b-value">{{ distance }} km</span>
+      </div>
+      <div class="breakdown-item">
+        <i class="fa-solid fa-cloud-sun-rain"></i>
+        <span class="b-label">Weather</span>
+        <span class="b-value">{{ weather }}</span>
+      </div>
+      <div class="breakdown-item">
+        <i class="fa-solid fa-traffic-light"></i>
+        <span class="b-label">Traffic</span>
+        <span class="b-value">{{ traffic }}</span>
+      </div>
+      <div class="breakdown-item">
+        <i class="fa-solid fa-motorcycle"></i>
+        <span class="b-label">Vehicle</span>
+        <span class="b-value">{{ vehicle }}</span>
+      </div>
+      <div class="breakdown-item">
+        <i class="fa-solid fa-clock"></i>
+        <span class="b-label">Prep Time</span>
+        <span class="b-value">{{ prep_time }} min</span>
+      </div>
+    </div>
+
+    <div class="result-actions">
+      <a href="{{ url_for('predict_form') }}" class="btn btn-primary">
+        <i class="fa-solid fa-rotate-right"></i> Predict Another
+      </a>
+      <a href="{{ url_for('home') }}" class="btn btn-ghost">
+        <i class="fa-solid fa-house"></i> Back Home
+      </a>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  animateCounter(document.querySelector('.big-number'));
+</script>
+{% endblock %}

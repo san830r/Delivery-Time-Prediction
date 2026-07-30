@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}SwiftETA · Delivery Time Predictor{% endblock %}</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="{% block bodyclass %}{% endblock %}">
+
+<div class="road-line"></div>
+
+<header class="navbar">
+  <a href="{{ url_for('home') }}" class="brand">
+    <span class="brand-icon"><i class="fa-solid fa-route"></i></span>
+    <span class="brand-text">Swift<span class="accent">ETA</span></span>
+  </a>
+  <nav class="nav-links">
+    <a href="{{ url_for('home') }}" class="nav-link">Home</a>
+    <a href="{{ url_for('predict_form') }}" class="nav-link nav-cta">
+      <i class="fa-solid fa-bolt"></i> Predict
+    </a>
+  </nav>
+</header>
+
+<main>
+  {% block content %}{% endblock %}
+</main>
+
+<footer class="footer">
+  <p>Built with <i class="fa-solid fa-heart" style="color:var(--accent-orange)"></i> using Flask &amp; Scikit-learn &middot; College Mini Project</p>
+</footer>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

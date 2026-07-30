@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}Predict Delivery Time · SwiftETA{% endblock %}
+{% block bodyclass %}page-form{% endblock %}
+
+{% block content %}
+<section class="form-section">
+  <div class="form-card">
+    <div class="form-card-head">
+      <span class="eyebrow"><i class="fa-solid fa-sliders"></i> PREDICTION FORM</span>
+      <h1>Tell us about the delivery</h1>
+      <p>Fill in the details below and let the model estimate the ETA.</p>
+    </div>
+
+    {% if error %}
+    <div class="alert-error">
+      <i class="fa-solid fa-circle-exclamation"></i>
+      <span>{{ error }}</span>
+    </div>
+    {% endif %}
+
+    <form action="{{ url_for('result') }}" method="POST" class="predict-form" id="predictForm">
+
+      <div class="field">
+        <label for="distance"><i class="fa-solid fa-road"></i> Distance (km)</label>
+        <input type="number" id="distance" name="distance" step="0.1" min="0.1" max="200"
+               placeholder="e.g. 5.5"
+               value="{{ form_data.distance if form_data else '' }}" required>
+      </div>
+
+      <div class="field">
+        <label for="weather"><i class="fa-solid fa-cloud-sun-rain"></i> Weather</label>
+        <select id="weather" name="weather" required>
+          {% for option in weather_options %}
+          <option value="{{ option }}" {% if form_data and form_data.weather == option %}selected{% endif %}>{{ option }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="traffic"><i class="fa-solid fa-traffic-light"></i> Traffic</label>
+        <select id="traffic" name="traffic" required>
+          {% for option in traffic_options %}
+          <option value="{{ option }}" {% if form_data and form_data.traffic == option %}selected{% endif %}>{{ option }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="vehicle"><i class="fa-solid fa-motorcycle"></i> Vehicle Type</label>
+        <select id="vehicle" name="vehicle" required>
+          {% for option in vehicle_options %}
+          <option value="{{ option }}" {% if form_data and form_data.vehicle == option %}selected{% endif %}>{{ option }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="prep_time"><i class="fa-solid fa-clock"></i> Preparation Time (min)</label>
+        <input type="number" id="prep_time" name="prep_time" step="1" min="0" max="120"
+               placeholder="e.g. 10"
+               value="{{ form_data.prep_time if form_data else '' }}" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block">
+        <i class="fa-solid fa-wand-magic-sparkles"></i> Predict Delivery Time
+      </button>
+    </form>
+  </div>
+</section>
+{% endblock %}

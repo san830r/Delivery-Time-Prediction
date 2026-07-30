@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% block title %}SwiftETA · Predict Your Delivery Time{% endblock %}
+{% block bodyclass %}page-home{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  <div class="hero-text">
+    <span class="eyebrow"><i class="fa-solid fa-microchip"></i> AI-POWERED LOGISTICS</span>
+    <h1>Know exactly<br>when it'll <span class="accent">arrive.</span></h1>
+    <p class="hero-sub">
+      SwiftETA uses a machine learning model trained on distance, weather,
+      traffic and vehicle data to predict delivery times before the rider
+      even leaves the store.
+    </p>
+    <div class="hero-actions">
+      <a href="{{ url_for('predict_form') }}" class="btn btn-primary">
+        <i class="fa-solid fa-bolt"></i> Predict Delivery Time
+      </a>
+      <a href="#how-it-works" class="btn btn-ghost">
+        See how it works
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-visual" aria-hidden="true">
+    <div class="route-card">
+      <div class="route-point store">
+        <i class="fa-solid fa-shop"></i>
+      </div>
+      <svg class="route-path" viewBox="0 0 320 40" preserveAspectRatio="none">
+        <path d="M10,30 C 90,-10 230,50 310,10" />
+      </svg>
+      <div class="route-dot">
+        <i class="fa-solid fa-motorcycle"></i>
+      </div>
+      <div class="route-point home">
+        <i class="fa-solid fa-house"></i>
+      </div>
+    </div>
+    <div class="route-badge">
+      <i class="fa-solid fa-clock"></i>
+      <span>ETA calculated in real time</span>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="section-heading">
+    <h2>Why SwiftETA</h2>
+    <p>Everything a delivery ETA needs, nothing it doesn't.</p>
+  </div>
+
+  <div class="card-grid">
+    <div class="feature-card">
+      <div class="feature-icon icon-orange"><i class="fa-solid fa-brain"></i></div>
+      <h3>ML-Powered</h3>
+      <p>A trained Random Forest model learns real delivery patterns instead of guessing with fixed rules.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon icon-mint"><i class="fa-solid fa-cloud-sun-rain"></i></div>
+      <h3>Weather Aware</h3>
+      <p>Rain, fog or a clear sky &mdash; the model factors in how weather slows a delivery down.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon icon-blue"><i class="fa-solid fa-traffic-light"></i></div>
+      <h3>Traffic Aware</h3>
+      <p>From light traffic to total gridlock, congestion is baked directly into the prediction.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon icon-purple"><i class="fa-solid fa-motorcycle"></i></div>
+      <h3>Any Vehicle</h3>
+      <p>Bike, scooter, car or van &mdash; each has its own realistic speed profile.</p>
+    </div>
+  </div>
+</section>
+
+<section class="how-it-works" id="how-it-works">
+  <div class="section-heading">
+    <h2>How it works</h2>
+    <p>Three steps between "order placed" and "here's your ETA."</p>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <span class="step-num">01</span>
+      <h3>Enter the details</h3>
+      <p>Distance, weather, traffic level, vehicle type and prep time.</p>
+    </div>
+    <div class="step">
+      <span class="step-num">02</span>
+      <h3>Model does the math</h3>
+      <p>A Scikit-learn regression model processes your inputs instantly.</p>
+    </div>
+    <div class="step">
+      <span class="step-num">03</span>
+      <h3>Get your ETA</h3>
+      <p>A clear, confident delivery time estimate &mdash; no spreadsheets required.</p>
+    </div>
+  </div>
+
+  <div class="cta-banner">
+    <div>
+      <h3>Ready to try it?</h3>
+      <p>Get a prediction in under 10 seconds.</p>
+    </div>
+    <a href="{{ url_for('predict_form') }}" class="btn btn-primary">
+      <i class="fa-solid fa-bolt"></i> Start Prediction
+    </a>
+  </div>
+</section>
+
+{% endblock %}
